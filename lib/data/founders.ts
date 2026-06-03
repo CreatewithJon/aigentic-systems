@@ -15,7 +15,7 @@ export const founders: Founder[] = [
   {
     slug: "alberto-de-pablo",
     name: "Alberto De Pablo",
-    title: "Co-Founder & Chief Strategy Officer",
+    title: "Co-Founder & Chief Executive Officer",
     shortBio:
       "Business strategist and systems thinker helping companies find where AI creates the most leverage.",
     fullBio:
@@ -27,7 +27,7 @@ export const founders: Founder[] = [
   {
     slug: "jonathan-cardona",
     name: "Jonathan Cardona",
-    title: "Co-Founder & Chief Growth Officer",
+    title: "Co-Founder & Chief AI Officer",
     shortBio:
       "Sales, automation, and AI implementation specialist. Builds the systems that turn traffic into revenue.",
     fullBio:
@@ -40,7 +40,7 @@ export const founders: Founder[] = [
   {
     slug: "dr-kenneth-cottrell",
     name: "Dr. Kenneth A. Cottrell",
-    title: "Co-Founder & Chief Technology Officer",
+    title: "Co-Founder & Chief Business Officer",
     shortBio:
       "AI researcher and engineer building the technical infrastructure that powers Aigentic's client solutions.",
     fullBio:
