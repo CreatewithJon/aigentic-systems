@@ -9,6 +9,7 @@ export type Founder = {
   twitter?: string;
   accentColor: string;
   accentHex: string;
+  photo?: string;
 };
 
 export const founders: Founder[] = [
@@ -23,6 +24,7 @@ export const founders: Founder[] = [
     focus: ["Business Strategy", "AI Workflow Design", "Go-To-Market", "Operations"],
     accentColor: "violet",
     accentHex: "#8b5cf6",
+    photo: "/alberto-de-pablo.png",
   },
   {
     slug: "jonathan-cardona",

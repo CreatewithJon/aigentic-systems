@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import { founders, getFounderBySlug } from "@/lib/data/founders";
 
@@ -30,12 +31,24 @@ export default async function TeamMemberPage(props: { params: Promise<{ slug: st
 
           {/* Profile header */}
           <div className="flex flex-col md:flex-row gap-8 mb-16">
-            <div
-              className="w-24 h-24 rounded-3xl flex items-center justify-center text-3xl font-bold flex-shrink-0"
-              style={{ backgroundColor: `${founder.accentHex}18`, color: founder.accentHex }}
-            >
-              {founder.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
-            </div>
+            {founder.photo ? (
+              <div className="w-32 h-32 rounded-3xl overflow-hidden flex-shrink-0">
+                <Image
+                  src={founder.photo}
+                  alt={founder.name}
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            ) : (
+              <div
+                className="w-32 h-32 rounded-3xl flex items-center justify-center text-3xl font-bold flex-shrink-0"
+                style={{ backgroundColor: `${founder.accentHex}18`, color: founder.accentHex }}
+              >
+                {founder.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+              </div>
+            )}
 
             <div className="flex-1">
               <div

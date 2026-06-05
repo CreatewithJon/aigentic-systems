@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "@/components/Nav";
 import { founders } from "@/lib/data/founders";
 
@@ -198,12 +199,24 @@ export default function HomePage() {
                 href={`/team/${founder.slug}`}
                 className="group p-7 rounded-2xl border border-white/6 bg-white/[0.02] hover:border-white/12 hover:bg-white/[0.04] transition-all"
               >
-                <div
-                  className="w-14 h-14 rounded-2xl mb-5 flex items-center justify-center text-xl font-bold"
-                  style={{ backgroundColor: `${founder.accentHex}18`, color: founder.accentHex }}
-                >
-                  {founder.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
-                </div>
+                {founder.photo ? (
+                  <div className="w-14 h-14 rounded-2xl mb-5 overflow-hidden">
+                    <Image
+                      src={founder.photo}
+                      alt={founder.name}
+                      width={56}
+                      height={56}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="w-14 h-14 rounded-2xl mb-5 flex items-center justify-center text-xl font-bold"
+                    style={{ backgroundColor: `${founder.accentHex}18`, color: founder.accentHex }}
+                  >
+                    {founder.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+                  </div>
+                )}
 
                 <div
                   className="text-[10px] font-semibold uppercase tracking-[0.15em] mb-1"
