@@ -38,6 +38,7 @@ export const founders: Founder[] = [
     linkedIn: "https://linkedin.com/in/jonathancardona",
     accentColor: "blue",
     accentHex: "#3b82f6",
+    photo: "/jonathan-cardona.png",
   },
   {
     slug: "dr-kenneth-cottrell",
