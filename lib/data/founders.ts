@@ -50,6 +50,7 @@ export const founders: Founder[] = [
     focus: ["AI Research", "Enterprise Architecture", "Machine Learning", "Technical Leadership"],
     accentColor: "emerald",
     accentHex: "#10b981",
+    photo: "/dr-kenneth-cottrell.png",
   },
 ];
 
