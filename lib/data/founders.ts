@@ -36,7 +36,7 @@ export const founders: Founder[] = [
     fullBio:
       "Jonathan Cardona is a technology entrepreneur, AI systems architect, and emerging technology advocate dedicated to helping businesses harness the power of artificial intelligence, automation, and digital transformation. As Co-Founder and Chief AI Officer of Aigentic Systems, he leads the company's AI strategy, product development, and implementation of intelligent systems designed to increase efficiency, improve decision-making, and drive business growth.\n\nComing from a non-traditional background, Jonathan is a self-taught technologist who built his expertise through hands-on experience developing AI-powered applications, automation workflows, agentic systems, and business solutions. His work focuses on bridging the gap between complex technology and practical business outcomes, making advanced AI accessible to organizations of all sizes.\n\nPrior to founding Aigentic Systems, Jonathan gained experience across financial services, banking, sales, customer support, and technology, developing a deep understanding of business operations and customer needs. This unique perspective enables him to design solutions that combine technical innovation with real-world impact.\n\nJonathan is passionate about empowering entrepreneurs, professionals, and organizations to thrive in the AI-powered digital economy through education, innovation, and responsible technology adoption.",
     focus: ["AI Strategy", "Agentic Systems", "Automation Workflows", "Digital Transformation"],
-    linkedIn: "https://linkedin.com/in/jonathancardona",
+    linkedIn: "https://www.linkedin.com/in/jonathan-cardona-1089291b9",
     accentColor: "blue",
     accentHex: "#3b82f6",
     photo: "/jonathan-cardona.png",
