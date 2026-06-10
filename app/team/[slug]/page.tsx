@@ -82,7 +82,11 @@ export default async function TeamMemberPage(props: { params: Promise<{ slug: st
               >
                 About
               </div>
-              <p className="text-sm text-white/65 leading-relaxed">{founder.fullBio}</p>
+              <div className="space-y-4">
+                {founder.fullBio.split("\n\n").map((para, i) => (
+                  <p key={i} className="text-sm text-white/65 leading-relaxed">{para}</p>
+                ))}
+              </div>
             </div>
 
             <div>
