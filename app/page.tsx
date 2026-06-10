@@ -1,9 +1,29 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import { founders } from "@/lib/data/founders";
 
 export default function HomePage() {
+  const [formData, setFormData] = useState({ name: "", email: "", business_name: "", message: "" });
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setFormState("loading");
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      setFormState(res.ok ? "success" : "error");
+    } catch {
+      setFormState("error");
+    }
+  }
   return (
     <div className="min-h-screen bg-[#080c12] text-white">
       <Nav />
@@ -259,59 +279,82 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="space-y-4 p-8 rounded-2xl border border-white/8 bg-white/[0.02]">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {formState === "success" ? (
+            <div className="p-10 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 text-center">
+              <div className="text-emerald-400 text-2xl mb-3">✓</div>
+              <h3 className="text-base font-semibold mb-2">We&apos;ll be in touch soon.</h3>
+              <p className="text-sm text-white/45">Your request has been received. Expect to hear from us within 24 hours.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4 p-8 rounded-2xl border border-white/8 bg-white/[0.02]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[10px] font-semibold uppercase tracking-wide text-white/40 mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    value={formData.name}
+                    onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
+                    className="w-full bg-white/5 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-violet-500/50"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] font-semibold uppercase tracking-wide text-white/40 mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="you@company.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
+                    className="w-full bg-white/5 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-violet-500/50"
+                  />
+                </div>
+              </div>
+
               <div>
                 <label className="block text-[10px] font-semibold uppercase tracking-wide text-white/40 mb-2">
-                  Name
+                  Business Name
                 </label>
                 <input
                   type="text"
-                  placeholder="Your name"
+                  placeholder="Your company"
+                  value={formData.business_name}
+                  onChange={(e) => setFormData((p) => ({ ...p, business_name: e.target.value }))}
                   className="w-full bg-white/5 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-violet-500/50"
                 />
               </div>
+
               <div>
                 <label className="block text-[10px] font-semibold uppercase tracking-wide text-white/40 mb-2">
-                  Email
+                  What&apos;s your biggest challenge right now?
                 </label>
-                <input
-                  type="email"
-                  placeholder="you@company.com"
-                  className="w-full bg-white/5 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-violet-500/50"
+                <textarea
+                  rows={4}
+                  placeholder="e.g. We're losing leads because we can't follow up fast enough..."
+                  value={formData.message}
+                  onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
+                  className="w-full bg-white/5 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-violet-500/50 resize-none"
                 />
               </div>
-            </div>
 
-            <div>
-              <label className="block text-[10px] font-semibold uppercase tracking-wide text-white/40 mb-2">
-                Business Name
-              </label>
-              <input
-                type="text"
-                placeholder="Your company"
-                className="w-full bg-white/5 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-violet-500/50"
-              />
-            </div>
+              {formState === "error" && (
+                <p className="text-xs text-rose-400">Something went wrong. Please try again.</p>
+              )}
 
-            <div>
-              <label className="block text-[10px] font-semibold uppercase tracking-wide text-white/40 mb-2">
-                What&apos;s your biggest challenge right now?
-              </label>
-              <textarea
-                rows={4}
-                placeholder="e.g. We're losing leads because we can't follow up fast enough..."
-                className="w-full bg-white/5 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 focus:outline-none focus:border-violet-500/50 resize-none"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer"
-            >
-              Request My Free AI Audit
-            </button>
-          </div>
+              <button
+                type="submit"
+                disabled={formState === "loading"}
+                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-violet-600 to-blue-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-50"
+              >
+                {formState === "loading" ? "Sending…" : "Request My Free AI Audit"}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
