@@ -17,7 +17,7 @@ export default function DashboardLogin() {
     if (password === DASHBOARD_PASSWORD) {
       sessionStorage.setItem("dashboard_auth", "true");
       sessionStorage.setItem("dashboard_founder", selectedFounder);
-      router.push(`/dashboard/${selectedFounder}`);
+      router.push(`/dashboard/executive`);
     } else {
       setError("Incorrect password.");
     }
@@ -31,7 +31,7 @@ export default function DashboardLogin() {
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
             <span className="text-white text-sm font-bold">A</span>
           </div>
-          <span className="text-white font-semibold tracking-tight">Aigentic <span className="text-white/40">Portal</span></span>
+          <span className="text-white font-semibold tracking-tight">Aigentic <span className="text-white/40">OS</span></span>
         </div>
 
         <div className="p-8 rounded-2xl border border-white/8 bg-white/[0.02]">
